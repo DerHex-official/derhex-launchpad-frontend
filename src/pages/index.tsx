@@ -13,6 +13,7 @@ import CompletedIDO from "../components/Home/CompletedIDO"
 import { usePageTitle } from "../hooks/utils"
 import StakingCTA from "../components/Home/StakingCTA"
 import BondsCTA from "../components/Home/BondsCTA"
+import OTCCTA from "../components/Home/OTCCTA"
 import FAQ from "../components/Home/FAQ"
 import Access from "../components/Launchpad/Access"
 import StakingBadge from "../components/Launchpad/StakingBadge"
@@ -21,6 +22,8 @@ import SupportedBy from "../components/Home/SupportedBy"
 import LaunchProject from "../components/Launchpad/LaunchProject"
 import UpComingGiveaways from "../components/Giveaways/UpComingGiveaway"
 import { Link } from "react-router-dom"
+import { PresalesDataProvider } from "../context/PresalesDataContext"
+import { GiveawaysDataProvider } from "../context/GiveawaysDataContext"
 
 function Home() {
   usePageTitle("Discover and Invest in Early-Stage Blockchain Projects")
@@ -32,11 +35,18 @@ function Home() {
       {/* <Unlock /> */}
       <HowTo />
       <StakingBadge />
-      <FeaturedIdo />
-      <CompletedIDO />
+      <OTCCTA />
+      {/* Wrap presale components in provider */}
+      <PresalesDataProvider>
+        <FeaturedIdo />
+        <CompletedIDO />
+      </PresalesDataProvider>
       <BondsCTA />
       <Guaranteed />
-      <UpComingGiveaways />
+      {/* Wrap giveaway components in provider */}
+      <GiveawaysDataProvider>
+        <UpComingGiveaways />
+      </GiveawaysDataProvider>
       <div className="flex items-center justify-center w-full">
         <Link
           to="/deals/giveaways"
