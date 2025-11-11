@@ -35,7 +35,7 @@ function SingleStake() {
   const createViemWalletClient = () => {
     return createWalletClient({
       chain: publicClient.chain,
-      transport: custom(window.ethereum)
+      transport: custom(window.ethereum as any)
     });
   };
 

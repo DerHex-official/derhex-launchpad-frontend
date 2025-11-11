@@ -75,13 +75,7 @@ function BondCard({ bond }: { bond: any }) {
   if (!bond) {
     return (
       <div className="flex justify-center items-center h-[200px]">
-        <Preloader
-          use={ThreeDots}
-          size={60}
-          strokeWidth={6}
-          strokeColor="#5325A9"
-          duration={2000}
-        />
+        <div className="text-white">Loading...</div>
       </div>
     );
   }

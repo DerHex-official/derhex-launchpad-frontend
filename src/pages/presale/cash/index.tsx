@@ -14,7 +14,7 @@ import { IoWalletSharp } from "react-icons/io5";
 const createViemWalletClient = () => {
     return createWalletClient({
         chain: baseSepolia,
-        transport: custom(window.ethereum)
+        transport: custom(window.ethereum as any)
     });
 };
 

@@ -132,7 +132,9 @@ export default function AdminPresaleManageID() {
         try {
             if (wallet && wallet.chainId !== selectedChain) {
                 console.log(`Switching wallet to chain ${getChainName()} (${selectedChain})`);
-                await wallet.switchChain(parseInt(selectedChain));
+                if (wallet.switchChain && typeof wallet.switchChain === 'function') {
+                    await wallet.switchChain(parseInt(selectedChain));
+                }
             }
         } catch (error) {
             console.error(`Error switching chain: ${error}`);

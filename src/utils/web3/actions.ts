@@ -9,11 +9,7 @@ import { createWalletClient, custom, WalletClient } from 'viem';
 import { baseSepolia } from 'viem/chains';
 import { getContractAddress } from '../source';
 
-declare global {
-    interface Window {
-        ethereum?: any;
-    }
-}
+// Window.ethereum is now declared in src/types/ethereum.d.ts
 
 export const createViemWalletClient = async (): Promise<WalletClient> => {
     if (!window.ethereum) {
@@ -25,7 +21,7 @@ export const createViemWalletClient = async (): Promise<WalletClient> => {
 
     const walletClient = createWalletClient({
         chain: client.chain,
-        transport: custom(window.ethereum)
+        transport: custom(window.ethereum as any)
     });
 
     return walletClient;

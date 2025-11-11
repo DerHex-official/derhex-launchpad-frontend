@@ -25,7 +25,7 @@ function Dynamic() {
   const createViemWalletClient = () => {
     return createWalletClient({
       chain: publicClient.chain,
-      transport: custom(window.ethereum)
+      transport: custom(window.ethereum as any)
     });
   };
   const [stakeAmount, setStakeAmount] = useState<number>(0);

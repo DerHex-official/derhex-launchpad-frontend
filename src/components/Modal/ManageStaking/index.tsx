@@ -20,7 +20,7 @@ const createViemWalletClient = (chainId?: string) => {
     if (!chainId) {
         console.error('No chainId provided to createViemWalletClient');
         return createWalletClient({
-            transport: custom(window.ethereum)
+            transport: custom(window.ethereum as any)
         });
     }
 
@@ -29,14 +29,14 @@ const createViemWalletClient = (chainId?: string) => {
     if (!chainConfig) {
         console.error(`Chain ID ${chainId} not supported`);
         return createWalletClient({
-            transport: custom(window.ethereum)
+            transport: custom(window.ethereum as any)
         });
     }
 
     console.log(`Creating wallet client for chain ${chainConfig.name} (${chainId})`);
     return createWalletClient({
         chain: chainConfig.viemChain,
-        transport: custom(window.ethereum)
+        transport: custom(window.ethereum as any)
     });
 };
 
@@ -88,7 +88,7 @@ export default function ManageStaking({ stakingPoolAddress, onClose, userAddress
             try {
                 if (window.ethereum && window.ethereum.chainId !== selectedChain) {
                     console.log(`Switching wallet to chain ${getChainName()} (${selectedChain})`);
-                    await window.ethereum.request({
+                    await (window.ethereum as any).request({
                         method: 'wallet_switchEthereumChain',
                         params: [{ chainId: `0x${parseInt(selectedChain).toString(16)}` }],
                     });
@@ -189,7 +189,7 @@ export default function ManageStaking({ stakingPoolAddress, onClose, userAddress
             try {
                 if (window.ethereum && window.ethereum.chainId !== selectedChain) {
                     console.log(`Switching wallet to chain ${getChainName()} (${selectedChain})`);
-                    await window.ethereum.request({
+                    await (window.ethereum as any).request({
                         method: 'wallet_switchEthereumChain',
                         params: [{ chainId: `0x${parseInt(selectedChain).toString(16)}` }],
                     });
@@ -247,7 +247,7 @@ export default function ManageStaking({ stakingPoolAddress, onClose, userAddress
             try {
                 if (window.ethereum && window.ethereum.chainId !== selectedChain) {
                     console.log(`Switching wallet to chain ${getChainName()} (${selectedChain})`);
-                    await window.ethereum.request({
+                    await (window.ethereum as any).request({
                         method: 'wallet_switchEthereumChain',
                         params: [{ chainId: `0x${parseInt(selectedChain).toString(16)}` }],
                     });

@@ -33,7 +33,7 @@ export default function IDOComponent() {
     const createViemWalletClient = () => {
         return createWalletClient({
             chain: publicClient.chain,
-            transport: custom(window.ethereum)
+            transport: custom(window.ethereum as any)
         });
     };
     const { id } = useParams<{ id: string }>();
