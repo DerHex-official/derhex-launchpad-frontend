@@ -93,8 +93,8 @@ export function useBond(projectName?: string | null, options?: UseBondOptions, i
                 }
 
                 result = await Promise.all(validBonds.map(async (bond, index) => {
-                    // Add delay based on index (1 second between each request - reduced from 2s)
-                    await new Promise(resolve => setTimeout(resolve, index * 1000));
+                    // Add delay based on index (0.5 seconds between each request)
+                    await new Promise(resolve => setTimeout(resolve, index * 500));
 
                     try {
                         // Add timeout to fetch to prevent hanging

@@ -55,8 +55,8 @@ export function usePresale(projectName?: string | null, options?: UsePresaleOpti
                 // Fetch all presale data if no ID is provided
                 result = await getAllPresaleData();
                 result = await Promise.all(result.map(async (presale, index) => {
-                    // Add delay based on index (2 seconds between each request)
-                    await new Promise(resolve => setTimeout(resolve, index * 2000));
+                    // Add delay based on index (0.5 seconds between each request)
+                    await new Promise(resolve => setTimeout(resolve, index * 500));
 
                     try {
                         const response = await fetch(ensureRawGistURL(presale.metadataURI as string));

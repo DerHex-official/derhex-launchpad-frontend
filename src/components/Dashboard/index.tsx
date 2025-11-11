@@ -6,7 +6,7 @@ import { Preloader, ThreeDots } from 'react-preloader-icon';
 
 function DashComp() {
   const { authenticated, login, logout, user } = usePrivy();
-  const { data, error, loading } = useLockStake({ polling: true, userAddress: user?.wallet?.address as `0x${string}` })
+  const { data, error, loading } = useLockStake({ polling: false, userAddress: user?.wallet?.address as `0x${string}` })
 
 
   function returnMultiplier(amount: number) {

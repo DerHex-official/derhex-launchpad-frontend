@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useBond } from "../../hooks/web3/useBond";
-import { Preloader, ThreeDots } from 'react-preloader-icon';
+import { useBondsData } from "../../context/BondsDataContext";
 import { isBefore } from "date-fns";
 import { FaDiscord, FaGlobe, FaTelegram, FaTwitter } from "react-icons/fa6";
 import { differenceInDays } from "date-fns";
@@ -187,7 +186,7 @@ function BondCard({ bond }: { bond: any }) {
 }
 
 function LiveAndUpcoming() {
-  const { data, error, loading } = useBond(null, { polling: false });
+  const { data } = useBondsData();
   const [filteredBonds, setFilteredBonds] = useState<any[]>([]);
 
   useEffect(() => {
@@ -200,40 +199,6 @@ function LiveAndUpcoming() {
       setFilteredBonds(filtered);
     }
   }, [data]);
-
-  if (loading) {
-    return (
-      <div className="flex justify-center items-center h-[200px]">
-        <Preloader
-          use={ThreeDots}
-          size={60}
-          strokeWidth={6}
-          strokeColor="#5325A9"
-          duration={2000}
-        />
-      </div>
-    );
-  }
-
-  if (error.message) {
-    return (
-      <div className="flex flex-col items-center justify-center space-y-4 p-8 text-center">
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-        </svg>
-        <h3 className="text-red-500 text-xl font-medium">Oops! Something went wrong</h3>
-        <p className="text-gray-400 max-w-md">
-          We're having trouble loading the upcoming bonds. Please try refreshing the page or check back later.
-        </p>
-        <button
-          onClick={() => window.location.reload()}
-          className="mt-4 px-6 py-2 rounded-full bg-purple-600 hover:bg-purple-700 text-white transition-colors"
-        >
-          Refresh Page
-        </button>
-      </div>
-    );
-  }
 
   return (
     <div className="font-space flex flex-col p-[40px_20px] lg:p-[40px]">

@@ -11,7 +11,7 @@ let lastChainId: string | null = null;
 
 // Rate limiting variables
 const requestTimestamps: number[] = [];
-const MAX_REQUESTS_PER_SECOND = 3; // Reduced from 5 to be more conservative
+const MAX_REQUESTS_PER_SECOND = 5; // Increased from 3 for better throughput
 const RATE_LIMIT_WINDOW_MS = 1000; // 1 second window
 
 // Track consecutive errors to implement circuit breaker pattern

@@ -33,7 +33,7 @@ function Dynamic() {
   const [estimatedRewards, setEstimatedRewards] = useState<number>(0);
   const [showMultiplierDropdown, setShowMultiplierDropdown] = useState<boolean>(false);
   const { user, login, authenticated } = usePrivy();
-  const { data, error, loading, refetch } = useLockStake({ polling: true, userAddress: user?.wallet?.address as `0x${string}` })
+  const { data, error, loading, refetch } = useLockStake({ polling: false, userAddress: user?.wallet?.address as `0x${string}` })
   const [openConfirmStaking, setOpenConfirmStaking] = useState<boolean>(false);
   const [openConfirmUnstaking, setOpenConfirmUnstaking] = useState<boolean>(false);
   const [isStaking, setIsStaking] = useState<boolean>(false);

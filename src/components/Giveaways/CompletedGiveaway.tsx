@@ -3,14 +3,13 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import GiveawayCardCompleted from "./StatusCard";
-import { useGiveaway } from "../../hooks/web3/useGiveaway";
-import { Preloader, ThreeDots } from 'react-preloader-icon';
+import { useGiveawaysData } from "../../context/GiveawaysDataContext";
 import { isBefore } from "date-fns";
 import CurrentChain from "../Presale/CurrentChain";
 import { useChain } from "../../context/ChainContext";
 
 function CompletedGiveaways() {
-    const { data, error, loading } = useGiveaway();
+    const { data } = useGiveawaysData();
     const [filteredGiveaways, setFilteredGiveaways] = useState<any[]>([]);
     const [searchTerm, setSearchTerm] = useState<string>("");
     const [currentPage, setCurrentPage] = useState(1);
@@ -101,22 +100,6 @@ function CompletedGiveaways() {
             </div>
         );
     };
-
-    if (loading) {
-        return (
-            <div className="flex justify-center items-center h-[200px]">
-                <Preloader use={ThreeDots} size={60} strokeWidth={6} strokeColor="#5325A9" duration={2000} />
-            </div>
-        );
-    }
-
-    if (error.message) {
-        return (
-            <div className="flex flex-col items-center justify-center space-y-4 p-8 text-center">
-                {/* ... error UI remains the same ... */}
-            </div>
-        )
-    }
 
     return (
         <div className="font-space flex flex-col p-[40px_20px] lg:p-[40px]">

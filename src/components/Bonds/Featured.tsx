@@ -1,14 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useBond } from '../../hooks/web3/useBond';
-import { Preloader, ThreeDots } from 'react-preloader-icon';
+import { useBondsData } from '../../context/BondsDataContext';
 import { useChain } from '../../context/ChainContext';
 import { CHAIN_ID } from '../../utils/source';
 import { differenceInDays, format } from 'date-fns';
 
 function FeaturedBonds() {
     const { selectedChain } = useChain();
-    const { data, loading, error, refetch } = useBond(null, { polling: false });
+    const { data, refetch } = useBondsData();
     const [featuredBond, setFeaturedBond] = useState<any>(null);
     const navigate = useNavigate();
 
@@ -52,22 +51,9 @@ function FeaturedBonds() {
         }
     }, [data]);
 
-    if (loading) {
-        return (
-            <div className="flex justify-center items-center h-[200px] p-[40px_20px] lg:p-[40px]">
-                <Preloader
-                    use={ThreeDots}
-                    size={60}
-                    strokeWidth={6}
-                    strokeColor="#5325A9"
-                    duration={2000}
-                />
-            </div>
-        );
-    }
-
-    if (error.message || !featuredBond) {
-        return null; // Don't show the featured section if there's an error or no featured bond
+    // Don't show the featured section if there's no featured bond
+    if (!featuredBond) {
+        return null;
     }
 
     return (

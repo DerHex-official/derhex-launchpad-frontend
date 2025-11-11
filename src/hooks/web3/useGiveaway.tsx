@@ -72,8 +72,8 @@ export function useGiveaway(projectName?: string | null, options?: UseGiveawayOp
                 try {
                     result = await getAllAirdropData();
                     result = await Promise.all(result.map(async (giveaway, index) => {
-                        // Add delay based on index (2 seconds between each request)
-                        await new Promise(resolve => setTimeout(resolve, index * 2000));
+                        // Add delay based on index (0.5 seconds between each request)
+                        await new Promise(resolve => setTimeout(resolve, index * 500));
 
                         try {
                             const response = await fetch(ensureRawGistURL(giveaway.metadataURI as string));

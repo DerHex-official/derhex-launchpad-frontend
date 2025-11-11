@@ -17,7 +17,7 @@ interface BondCache {
     chainId: string;
 }
 
-const CACHE_TTL = 60000; // 1 minute cache TTL
+const CACHE_TTL = 300000; // 5 minute cache TTL
 const bondAddressCache: BondCache = { timestamp: 0, data: null, chainId: '' };
 const bondDataCache: Record<string, BondCache> = {};
 

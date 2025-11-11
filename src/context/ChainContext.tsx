@@ -145,27 +145,7 @@ export const ChainProvider: React.FC<ChainProviderProps> = ({ children }) => {
     }
   }, [wallets, selectedChain]);
 
-  // Set up a polling mechanism to check for wallet chain changes
-  useEffect(() => {
-    if (wallets && wallets.length > 0) {
-      const checkWalletChain = () => {
-        const activeWallet = wallets[0];
-        const chainInfo = activeWallet.chainId;
-        const chainId = chainInfo.split(':')[1];
-
-        // If the chain has changed and it's supported, update the app's chain
-        if (chainId !== selectedChain && chainId in supportedChains) {
-          console.log(`ChainContext: Wallet chain changed to ${chainId}, updating app chain`);
-          setSelectedChain(chainId as SupportedChainId);
-        }
-      };
-
-      // Check every 2 seconds for wallet chain changes
-      const interval = setInterval(checkWalletChain, 2000);
-
-      return () => clearInterval(interval);
-    }
-  }, [wallets, selectedChain]);
+  // Removed 2-second polling - rely on wallet events and manual chain switching instead
 
   const chainName = getChainName(selectedChain);
 

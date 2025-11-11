@@ -12,6 +12,7 @@
   "dependencies": {
     "@apollo/client": "^3.13.1",
     "@headlessui/react": "^2.2.0",
+    "@heroicons/react": "^2.2.0",
     "@privy-io/react-auth": "^2.5.0",
     "@privy-io/wagmi": "^1.0.3",
     "@rainbow-me/rainbowkit": "^2.2.3",
